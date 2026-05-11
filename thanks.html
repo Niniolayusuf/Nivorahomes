@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>You're on the list — Nivora Homes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f0e0c;
+    --muted: #6b6560;
+    --border: #e2ddd8;
+    --terra: #bf5b2a;
+    --terra-bg: #fdf3ed;
+    --terra-dark: #8c3d17;
+    --leaf: #2a5c30;
+    --leaf-bg: #edf4ee;
+    --sand: #f7f4ef;
+    --white: #fffffe;
+  }
+
+  html { font-size: 16px; }
+  body {
+    font-family: 'Instrument Sans', system-ui, sans-serif;
+    background: var(--sand);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 clamp(1.5rem, 5vw, 5rem);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+  .nav-logo span { font-style: italic; color: var(--terra); }
+
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: clamp(2rem, 5vw, 3.5rem);
+    max-width: 540px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .checkmark {
+    width: 64px;
+    height: 64px;
+    background: var(--leaf-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.75rem;
+    font-size: 1.75rem;
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  h1 em { font-style: italic; color: var(--terra); }
+
+  .subtitle {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .what-next {
+    background: var(--sand);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+  .what-next-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.85rem;
+  }
+  .next-items { display: flex; flex-direction: column; gap: 0.65rem; }
+  .next-item { display: flex; gap: 0.75rem; align-items: flex-start; font-size: 0.88rem; color: var(--ink); line-height: 1.5; }
+  .next-icon { flex-shrink: 0; font-size: 0.95rem; margin-top: 0.05rem; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin-bottom: 2rem; }
+
+  .share-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .share-sub {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .share-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--sand);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.65rem 0.85rem;
+    margin-bottom: 1rem;
+  }
+  .share-url {
+    flex: 1;
+    font-size: 0.82rem;
+    color: var(--muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+  }
+
+  .copy-btn {
+    background: var(--terra);
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .copy-btn:hover { opacity: 0.88; }
+
+  .whatsapp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.85rem;
+    background: #25d366;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.15s;
+    margin-bottom: 1rem;
+  }
+  .whatsapp-btn:hover { opacity: 0.88; }
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-decoration: none;
+    margin-top: 0.5rem;
+    transition: color 0.15s;
+  }
+  .back-link:hover { color: var(--terra); }
+
+  footer {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    padding: 1.25rem clamp(1.5rem, 5vw, 5rem);
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Nivora <span>Homes</span></a>
+</nav>
+
+<main>
+  <div class="card">
+    <div class="checkmark">✓</div>
+    <h1>You're on the list.<br><em>We'll be in touch.</em></h1>
+    <p class="subtitle">Thank you for signing up. When Nivora Homes launches, you'll be one of the first to know — and one of the first to get your home documented properly.</p>
+
+    <div class="what-next">
+      <div class="what-next-label">What happens next</div>
+      <div class="next-items">
+        <div class="next-item">
+          <div class="next-icon">📬</div>
+          <div>We'll email you personally when we launch — no newsletters, no fluff.</div>
+        </div>
+        <div class="next-item">
+          <div class="next-icon">🎁</div>
+          <div>Waitlist members get early access and a discounted launch price.</div>
+        </div>
+        <div class="next-item">
+          <div class="next-icon">🏠</div>
+          <div>In the meantime, start thinking room by room — what do you own that you've never written down?</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="share-label">Know someone who needs this?</div>
+    <div class="share-sub">Most Nigerian homes are completely undocumented. Share this with one person who'd thank you for it.</div>
+
+    <div class="share-box">
+      <div class="share-url">https://nivoraapp.github.io/Nivorahomes/</div>
+      <button class="copy-btn" onclick="copyLink()">Copy</button>
+    </div>
+
+    <a class="whatsapp-btn" href="https://wa.me/?text=I%20just%20joined%20the%20waitlist%20for%20Nivora%20Homes%20%E2%80%94%20an%20app%20that%20helps%20you%20document%20everything%20you%20own%20at%20home%20so%20you're%20ready%20if%20something%20ever%20happens.%20Check%20it%20out%3A%20https%3A%2F%2Fnivoraapp.github.io%2FNivorahomes%2F" target="_blank">
+      Share on WhatsApp
+    </a>
+
+    <a class="back-link" href="index.html">← Back to homepage</a>
+  </div>
+</main>
+
+<footer>
+  © 2026 Nivora Homes · Built for Nigerian homes.
+</footer>
+
+<script>
+  function copyLink() {
+    navigator.clipboard.writeText('https://nivoraapp.github.io/Nivorahomes/').then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = 'Copied!';
+      btn.style.background = '#2a5c30';
+      setTimeout(() => {
+        btn.textContent = 'Copy';
+        btn.style.background = '';
+      }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
